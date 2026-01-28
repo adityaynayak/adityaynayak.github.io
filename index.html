@@ -1,159 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aditya Y Nayak | Hardware Portfolio</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, Arial, sans-serif; }
-    body { background: #0b1220; color: #e5e7eb; line-height: 1.6; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aditya Nayak | Hardware Engineer</title>
 
-    header {
-      padding: 3rem 1rem 4rem;
-      text-align: center;
-      background: radial-gradient(1200px 400px at 50% -10%, #1d4ed8, transparent), linear-gradient(135deg, #020617, #020617);
-      position: relative;
-      overflow: hidden;
-    }
+<style>
+:root {
+  --bg: #05060a;
+  --panel: rgba(10,12,20,0.85);
+  --accent: #38bdf8;
+  --accent2: #22c55e;
+  --text: #e5e7eb;
+  --muted: #9aa4b2;
+  --line: rgba(148,163,184,.2);
+}
 
-    header h1 { font-size: 2.8rem; margin-bottom: 0.6rem; }
-    header p { font-size: 1.15rem; color: #c7d2fe; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system, sans-serif; }
+html { scroll-behavior: smooth; }
+body { color: var(--text); background: var(--bg); overflow-x: hidden; }
 
-    .pulse {
-      position: absolute; inset: auto auto -120px -120px; width: 300px; height: 300px;
-      background: rgba(59,130,246,0.25); filter: blur(80px); border-radius: 50%;
-      animation: float 8s ease-in-out infinite;
-    }
+/* Backdrop hardware */
+.backdrop { position: fixed; inset: 0; pointer-events: none; z-index: -1; }
+.backdrop img { position: absolute; opacity: .12; filter: blur(.2px); width: 48px; height: auto; transition: transform .2s ease; transform-origin: center; }
 
-    @keyframes float { 50% { transform: translate(40px, -30px); } }
+/* Navbar */
+nav { position: fixed; top:0; width:100%; z-index:10; backdrop-filter: blur(10px); background: rgba(5,6,10,.75); border-bottom:1px solid var(--line); }
+.nav-inner { max-width: 1100px; margin:auto; padding:1rem 1.2rem; display:flex; justify-content:space-between; align-items:center; }
+nav a { color: var(--muted); text-decoration:none; margin-left:1.4rem; font-size:.85rem; letter-spacing:.08em; }
+nav a:hover { color: var(--accent); }
 
-    nav {
-      display: flex; justify-content: center; gap: 1.5rem; background: #020617; padding: 1rem; position: sticky; top: 0; z-index: 5;
-    }
-    nav a { color: #93c5fd; text-decoration: none; font-weight: 600; }
-    nav a:hover { color: #fff; }
+/* Sections */
+section { max-width:1100px; margin:auto; padding:7rem 1.2rem 3rem; }
+.panel { background: var(--panel); border:1px solid var(--line); border-radius:16px; padding:2rem; box-shadow:0 20px 60px rgba(0,0,0,.6); transition: transform .3s ease, box-shadow .3s ease; position: relative; overflow: hidden; }
+.panel:hover { transform: translateY(-5px) rotateZ(-1deg); box-shadow:0 25px 70px rgba(0,0,0,.7); }
 
-    section { max-width: 980px; margin: 3.2rem auto; padding: 0 1.2rem; }
-    section h2 { font-size: 2.1rem; margin-bottom: 1.2rem; color: #60a5fa; }
+h1{font-size:clamp(2.6rem,5vw,3.6rem); letter-spacing:.06em;}
+h2{font-size:1.1rem; color:var(--accent); font-weight:500; margin-top:.8rem;}
+h3{font-size:1.6rem; color:var(--accent); margin-bottom:1.4rem; letter-spacing:.12em;}
+h4{margin-bottom:.4rem;}
+p{color:var(--muted); max-width:720px;}
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+/* Hero / Workmat */
+header { min-height:100vh; display:flex; align-items:center; }
+.workmat { display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:center; }
+.tools { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+.tool { background: rgba(2,6,23,.9); border:1px dashed var(--line); border-radius:14px; padding:1.2rem; text-align:center; color: var(--accent); transition: transform .3s ease, box-shadow .3s ease; position: relative; }
+.tool:hover { transform: translateY(-4px) scale(1.05) rotateZ(-2deg); box-shadow: 0 15px 40px rgba(0,0,0,.6); }
+.tool img { width:48px; height:auto; margin-bottom:.4rem; }
+.tool::after { content:''; position:absolute; width:4px; height:4px; background: var(--accent2); border-radius:50%; top:50%; left:50%; transform: translate(-50%, -50%); animation: glowPulse 1.2s infinite ease-in-out alternate; }
+@keyframes glowPulse { 0%{transform: translate(-50%,-50%) scale(0.6); opacity:.4;} 100%{transform: translate(-50%,-50%) scale(1.2); opacity:1;} }
 
-    .card {
-      background: #020617; padding: 1.6rem; border-radius: 16px;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.35);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(0,0,0,0.45); }
+/* Projects / Experience */
+.stack { display:grid; gap:1.4rem; position: relative; }
+.meta{font-size:.85rem;color:var(--muted);margin-bottom:.5rem;}
+.tags span{display:inline-block;margin:.35rem .35rem 0 0;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(56,189,248,.35); color:var(--accent); font-size:.8rem;}
 
-    .chip { display: inline-block; background: #1e40af; padding: .45rem .8rem; border-radius: 999px; font-size: .9rem; margin: .25rem .25rem 0 0; cursor: pointer; }
-    .chip.active { background: #22c55e; color: #022c22; }
+/* LED signal along path */
+.led { position: absolute; width: 10px; height: 10px; border-radius:50%; background: var(--accent2); animation: moveSignal 2s linear infinite; }
+@keyframes moveSignal { 0%{transform: translateX(0) scale(0.6); opacity:.4;} 50%{transform: translateX(50px) scale(1.2); opacity:1;} 100%{transform: translateX(100px) scale(0.6); opacity:.4;} }
 
-    .cta {
-      display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem;
-      background: #2563eb; color: #fff; padding: .7rem 1.1rem; border-radius: 10px; text-decoration: none; font-weight: 600;
-    }
-    .cta:hover { background: #1d4ed8; }
+/* Tools & Platforms */
+.tools-platforms { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.2rem; margin-top:1rem; }
+.platform { background: rgba(2,6,23,.9); border-radius:14px; padding:1.2rem; border:1px solid var(--line); color: var(--accent); text-align:center; transition: transform .2s ease, box-shadow .2s ease; position: relative; }
+.platform:hover { transform: translateY(-4px) scale(1.03) rotateZ(1deg); box-shadow:0 15px 40px rgba(0,0,0,.6); }
+.platform h4 { margin-bottom:.5rem; }
+.platform ul { list-style:none; padding-left:0; font-size:.85rem; color:var(--muted); }
+.platform ul li { margin-bottom:.3rem; }
 
-    footer { text-align: center; padding: 2.2rem 1rem; background: #020617; color: #94a3b8; }
-
-    .timeline { border-left: 3px solid #1e40af; padding-left: 1.2rem; }
-    .event { margin-bottom: 1.4rem; }
-
-    .fun { color: #a5b4fc; font-size: .95rem; }
-
-    @media (max-width: 600px) { header h1 { font-size: 2.2rem; } }
-  </style>
+footer{ max-width:1100px;margin:auto;padding:4rem 1.2rem;color:var(--muted);border-top:1px solid var(--line); }
+@media (max-width:900px){.workmat{grid-template-columns:1fr;}}
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="pulse"></div>
-    <h1>Aditya Y Nayak</h1>
-    <p>UC Berkeley Alum • Hardware Engineer • Building things that actually exist</p>
-    <a class="cta" href="#projects">See What I Build →</a>
-  </header>
+<div class="backdrop">
+  <img src="nodemcu.png" style="left:10%; top:120%;" data-speed="0.3" />
+  <img src="jumper.png" style="left:30%; top:140%;" data-speed="0.5" />
+  <img src="screwdriver.png" style="left:55%; top:160%;" data-speed="0.35" />
+  <img src="breadboard.png" style="left:70%; top:130%;" data-speed="0.45" />
+  <img src="soldering.png" style="left:85%; top:150%;" data-speed="0.6" />
+</div>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-      <p>
-        I’m a hardware-focused engineer who likes turning ideas into physical systems.
-        From microcontrollers to circuits and embedded logic, I enjoy working close to the metal—where electrons do the heavy lifting.
-      </p>
-      <p class="fun">Translation: I break boards, fix them, and learn fast.</p>
+<nav>
+  <div class="nav-inner">
+    <strong>Aditya Nayak</strong>
+    <div>
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#tools">TOOLS</a>
+      <a href="#contact">CONTACT</a>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <section id="projects">
-    <h2>Hardware Projects</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Embedded Control System</h3>
-        <p>Designed and programmed a microcontroller-based system to control motors and sensors with real-time feedback.</p>
-        <span class="chip">Microcontrollers</span>
-        <span class="chip">PWM</span>
-        <span class="chip">Sensors</span>
-      </div>
-      <div class="card">
-        <h3>IoT Prototype</h3>
-        <p>Built a connected hardware prototype that collects data and communicates wirelessly for monitoring and control.</p>
-        <span class="chip">ESP8266</span>
-        <span class="chip">WiFi</span>
-        <span class="chip">Embedded C</span>
-      </div>
-      <div class="card">
-        <h3>Custom Circuit Design</h3>
-        <p>Created and tested basic circuits for power regulation, LEDs, and signal control.</p>
-        <span class="chip">Electronics</span>
-        <span class="chip">Debugging</span>
-        <span class="chip">Breadboards</span>
-      </div>
+<header id="home">
+<section>
+  <div class="workmat panel">
+    <div>
+      <h1>Aditya Nayak</h1>
+      <h2>Hardware & Embedded Systems Engineer</h2>
+      <p>I work on systems that live in the physical world—microcontrollers, circuits, sensors, and the software that makes them behave. I like clean designs, careful debugging, and hardware that actually ships.</p>
     </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills (Click to Highlight)</h2>
-    <div class="card">
-      <div id="skillSet">
-        <span class="chip">Embedded Systems</span>
-        <span class="chip">Microcontrollers</span>
-        <span class="chip">C / C++</span>
-        <span class="chip">Python</span>
-        <span class="chip">Circuit Analysis</span>
-        <span class="chip">Debugging</span>
-        <span class="chip">Problem Solving</span>
-      </div>
-      <p class="fun">Click a skill. No pressure. They won’t bite.</p>
+    <div class="tools">
+      <div class="tool"><img id="nodemcu" alt="NodeMCU"><span>NodeMCU</span></div>
+      <div class="tool"><img id="jumper" alt="Jumper Wires"><span>Jumper Wires</span></div>
+      <div class="tool"><img id="screwdriver" alt="Screwdriver"><span>Screwdriver</span></div>
+      <div class="tool"><img id="breadboard" alt="Breadboard"><span>Breadboard</span></div>
+      <div class="tool"><img id="soldering" alt="Soldering Iron"><span>Soldering</span></div>
     </div>
-  </section>
+  </div>
+</section>
+</header>
 
-  <section id="contact">
-    <h2>Let’s Build Something</h2>
-    <div class="card">
-      <p>I’m interested in hardware and embedded roles where thoughtful engineering matters.</p>
-      <p>Email: your.email@example.com</p>
-      <p>LinkedIn: linkedin.com/in/yourprofile</p>
-      <p>GitHub: github.com/yourusername</p>
-    </div>
-  </section>
+<section id="about">
+<h3>ABOUT</h3>
+<div class="panel"> 
+  <p>UC Berkeley alum focused on hardware and embedded engineering. I enjoy working close to the system boundary—where software decisions affect signals, power, and timing.</p>
+  <p style="margin-top:1rem">Calm under pressure, systematic when debugging, and always curious.</p>
+  <div class="led" style="top:20px; left:20px;"></div>
+  <div class="led" style="top:60px; left:50px;"></div>
+</div>
+</section>
 
-  <footer>
-    <p>© 2026 Aditya Y Nayak • Hardware-minded and proudly hands-on</p>
-  </footer>
+<section id="projects">
+<h3>PROJECTS</h3>
+<div class="stack">
+  <div class="panel">
+    <h4>Embedded Control System</h4>
+    <div class="meta">C / C++ · PWM · Sensors</div>
+    <p>Designed a microcontroller-based control system integrating sensors and real-time logic.</p>
+    <div class="tags"><span>MCU</span><span>Control</span><span>Debugging</span></div>
+    <div class="led" style="top:30px; left:10px;"></div>
+  </div>
+  <div class="panel">
+    <h4>Wireless Hardware Prototype</h4>
+    <div class="meta">ESP8266 · WiFi</div>
+    <p>Built a connected prototype for data collection and monitoring.</p>
+    <div class="tags"><span>IoT</span><span>Embedded</span></div>
+    <div class="led" style="top:50px; left:60px;"></div>
+  </div>
+  <div class="panel">
+    <h4>Circuit Design & Testing</h4>
+    <div class="meta">Power · Signals · Prototyping</div>
+    <p>Created and tested circuits for regulation, LEDs, and signal conditioning.</p>
+    <div class="tags"><span>Electronics</span><span>Breadboard</span></div>
+    <div class="led" style="top:40px; left:80px;"></div>
+  </div>
+</div>
+</section>
 
-  <script>
-    // Simple interaction: toggle skill highlight
-    document.querySelectorAll('.chip').forEach(chip => {
-      chip.addEventListener('click', () => chip.classList.toggle('active'));
-    });
-  </script>
+<section id="tools">
+<h3>TOOLS & PLATFORMS</h3>
+<div class="tools-platforms">
+  <div class="platform">
+    <h4>Embedded & Hardware</h4>
+    <ul>
+      <li>ESP8266 / Arduino / ARM MCUs</li>
+      <li>Breadboards & Jumper Wires</li>
+      <li>Power & Signal Regulation</li>
+    </ul>
+  </div>
+  <div class="platform">
+    <h4>Software</h4>
+    <ul>
+      <li>C / C++ / Python</li>
+      <li>Arduino IDE / PlatformIO</li>
+      <li>Git / GitHub</li>
+    </ul>
+  </div>
+  <div class="platform">
+    <h4>Debug & Test</h4>
+    <ul>
+      <li>Multimeter & Logic Analyzer</li>
+      <li>Serial Debugging</li>
+      <li>Systematic Fault Isolation</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<h3>CONTACT</h3>
+<div class="panel">
+  <p>Email: your.email@example.com</p>
+  <p>LinkedIn: linkedin.com/in/yourprofile</p>
+  <p>GitHub: github.com/yourusername</p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Aditya Nayak · Built like hardware: deliberate, grounded, reliable.</p>
+</footer>
+
+<script>
+// Parallax and LED animation
+const backdropItems = document.querySelectorAll('.backdrop img');
+const panels = document.querySelectorAll('.panel');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  backdropItems.forEach(item => {
+    const speed = parseFloat(item.dataset.speed);
+    const sway = Math.sin(scrollTop*0.005 + parseFloat(item.dataset.speed))*5;
+    item.style.transform = `translateY(${-scrollTop*speed}px) rotate(${sway}deg)`;
+  });
+  panels.forEach(panel => {
+    panel.style.transform = `translateY(${scrollTop*0.02}px) rotateZ(${scrollTop*0.002}deg)`;
+  });
+});
+
+// Load tool images with any extension (png, jpg, jpeg)
+const tools = [
+  {id: 'nodemcu', name: 'nodemcu'},
+  {id: 'jumper', name: 'jumper'},
+  {id: 'screwdriver', name: 'screwdriver'},
+  {id: 'breadboard', name: 'breadboard'},
+  {id: 'soldering', name: 'soldering'}
+];
+const exts = ['png','jpg','jpeg'];
+
+tools.forEach(tool => {
+  const img = document.getElementById(tool.id);
+  let found = false;
+  exts.forEach(ext => {
+    if(found) return;
+    fetch(`${tool.name}.${ext}`, {method:'HEAD'}).then(res => {
+      if(res.ok && !found){
+        img.src = `${tool.name}.${ext}`;
+        found = true;
+      }
+    }).catch(err => {});
+  });
+});
+</script>
 
 </body>
 </html>
