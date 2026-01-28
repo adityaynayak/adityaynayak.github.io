@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aditya Y Nayak | Hardware Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Inter, Arial, sans-serif; }
+    body { background: #0b1220; color: #e5e7eb; line-height: 1.6; }
+
+    header {
+      padding: 3rem 1rem 4rem;
+      text-align: center;
+      background: radial-gradient(1200px 400px at 50% -10%, #1d4ed8, transparent), linear-gradient(135deg, #020617, #020617);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 { font-size: 2.8rem; margin-bottom: 0.6rem; }
+    header p { font-size: 1.15rem; color: #c7d2fe; }
+
+    .pulse {
+      position: absolute; inset: auto auto -120px -120px; width: 300px; height: 300px;
+      background: rgba(59,130,246,0.25); filter: blur(80px); border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float { 50% { transform: translate(40px, -30px); } }
+
+    nav {
+      display: flex; justify-content: center; gap: 1.5rem; background: #020617; padding: 1rem; position: sticky; top: 0; z-index: 5;
+    }
+    nav a { color: #93c5fd; text-decoration: none; font-weight: 600; }
+    nav a:hover { color: #fff; }
+
+    section { max-width: 980px; margin: 3.2rem auto; padding: 0 1.2rem; }
+    section h2 { font-size: 2.1rem; margin-bottom: 1.2rem; color: #60a5fa; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
+
+    .card {
+      background: #020617; padding: 1.6rem; border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(0,0,0,0.45); }
+
+    .chip { display: inline-block; background: #1e40af; padding: .45rem .8rem; border-radius: 999px; font-size: .9rem; margin: .25rem .25rem 0 0; cursor: pointer; }
+    .chip.active { background: #22c55e; color: #022c22; }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem;
+      background: #2563eb; color: #fff; padding: .7rem 1.1rem; border-radius: 10px; text-decoration: none; font-weight: 600;
+    }
+    .cta:hover { background: #1d4ed8; }
+
+    footer { text-align: center; padding: 2.2rem 1rem; background: #020617; color: #94a3b8; }
+
+    .timeline { border-left: 3px solid #1e40af; padding-left: 1.2rem; }
+    .event { margin-bottom: 1.4rem; }
+
+    .fun { color: #a5b4fc; font-size: .95rem; }
+
+    @media (max-width: 600px) { header h1 { font-size: 2.2rem; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="pulse"></div>
+    <h1>Aditya Y Nayak</h1>
+    <p>UC Berkeley Alum • Hardware Engineer • Building things that actually exist</p>
+    <a class="cta" href="#projects">See What I Build →</a>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>
+        I’m a hardware-focused engineer who likes turning ideas into physical systems.
+        From microcontrollers to circuits and embedded logic, I enjoy working close to the metal—where electrons do the heavy lifting.
+      </p>
+      <p class="fun">Translation: I break boards, fix them, and learn fast.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Hardware Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Embedded Control System</h3>
+        <p>Designed and programmed a microcontroller-based system to control motors and sensors with real-time feedback.</p>
+        <span class="chip">Microcontrollers</span>
+        <span class="chip">PWM</span>
+        <span class="chip">Sensors</span>
+      </div>
+      <div class="card">
+        <h3>IoT Prototype</h3>
+        <p>Built a connected hardware prototype that collects data and communicates wirelessly for monitoring and control.</p>
+        <span class="chip">ESP8266</span>
+        <span class="chip">WiFi</span>
+        <span class="chip">Embedded C</span>
+      </div>
+      <div class="card">
+        <h3>Custom Circuit Design</h3>
+        <p>Created and tested basic circuits for power regulation, LEDs, and signal control.</p>
+        <span class="chip">Electronics</span>
+        <span class="chip">Debugging</span>
+        <span class="chip">Breadboards</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills (Click to Highlight)</h2>
+    <div class="card">
+      <div id="skillSet">
+        <span class="chip">Embedded Systems</span>
+        <span class="chip">Microcontrollers</span>
+        <span class="chip">C / C++</span>
+        <span class="chip">Python</span>
+        <span class="chip">Circuit Analysis</span>
+        <span class="chip">Debugging</span>
+        <span class="chip">Problem Solving</span>
+      </div>
+      <p class="fun">Click a skill. No pressure. They won’t bite.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Let’s Build Something</h2>
+    <div class="card">
+      <p>I’m interested in hardware and embedded roles where thoughtful engineering matters.</p>
+      <p>Email: your.email@example.com</p>
+      <p>LinkedIn: linkedin.com/in/yourprofile</p>
+      <p>GitHub: github.com/yourusername</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Aditya Y Nayak • Hardware-minded and proudly hands-on</p>
+  </footer>
+
+  <script>
+    // Simple interaction: toggle skill highlight
+    document.querySelectorAll('.chip').forEach(chip => {
+      chip.addEventListener('click', () => chip.classList.toggle('active'));
+    });
+  </script>
+
+</body>
+</html>
